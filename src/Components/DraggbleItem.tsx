@@ -1,5 +1,6 @@
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import { Font } from '../common/Font';
 
 const Item = styled.li`
 	width: 450px;
@@ -24,7 +25,10 @@ function DraggableFood({ foods, index }: IDraggableItemProps) {
 		<Draggable key={foods.name} draggableId={foods.name} index={index}>
 			{(provided1) => (
 				<Item ref={provided1.innerRef} {...provided1.draggableProps} {...provided1.dragHandleProps}>
-					{foods.name} {foods.amount} {foods.leftTime}까지
+					<Font fontSize="1rem" fontWeight="600" marginBottom="0.5rem">
+						{foods.name} {foods.amount}
+					</Font>{' '}
+					{foods.leftTime} 까지 먹을 수 있음!
 				</Item>
 			)}
 		</Draggable>

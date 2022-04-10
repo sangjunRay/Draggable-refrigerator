@@ -76,10 +76,11 @@ function App() {
 	return (
 		<>
 			<Header>
-				<Font fontSize="1.3rem" fontWeight="600">
+				<Font fontSize="1.3rem" fontWeight="600" marginBottom="0.5rem">
 					냉장고를 부탁해 🧚‍♀️
 				</Font>
 				<p>react / typescript / recoil / react-beautiful-dnd</p>
+				<p>create by sangjunRay.</p>
 			</Header>
 			<Container>
 				<Globalstyled />

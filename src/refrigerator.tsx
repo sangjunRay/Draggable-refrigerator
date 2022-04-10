@@ -2,6 +2,7 @@ import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { foodState } from './atoms';
+import { Font } from './common/Font';
 import DraggableFood from './Components/DraggbleItem';
 
 const UlStyle = styled.ul`
@@ -34,7 +35,9 @@ export function Refrigerator() {
 				<Droppable droppableId="one">
 					{(provided) => (
 						<UlStyle ref={provided.innerRef} {...provided.droppableProps}>
-							<p style={{ marginBottom: '1rem' }}>냉장고 1번 칸</p>
+							<Font fontSize="1.2rem" fontWeight="600" style={{ marginBottom: '1.5rem', marginRight: 'auto' }}>
+								❄️ 냉동실 1번 칸
+							</Font>
 							{food.map((foods, index) => {
 								return <DraggableFood key={foods.name} foods={foods} index={index} />;
 							})}
