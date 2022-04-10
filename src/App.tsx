@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Font } from './common/Font';
 import { Refrigerator } from './refrigerator';
 
 const Globalstyled = createGlobalStyle`
@@ -62,12 +63,28 @@ const Container = styled.div`
 	max-width: 100vw;
 `;
 
+const Header = styled.header`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 3rem;
+`;
+
 function App() {
 	return (
-		<Container>
-			<Globalstyled />
-			<Refrigerator />
-		</Container>
+		<>
+			<Header>
+				<Font fontSize="1.3rem" fontWeight="600">
+					냉장고를 부탁해 🧚‍♀️
+				</Font>
+				<p>react / typescript / recoil / react-beautiful-dnd</p>
+			</Header>
+			<Container>
+				<Globalstyled />
+				<Refrigerator />
+			</Container>
+		</>
 	);
 }
 

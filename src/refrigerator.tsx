@@ -1,5 +1,7 @@
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { foodState } from './atoms';
 
 const Item = styled.li`
 	width: 450px;
@@ -25,8 +27,16 @@ const UlStyle = styled.ul`
 `;
 
 export function Refrigerator() {
-	const DragEnd = () => {
-		console.log('end');
+	const [food, setFood] = useRecoilState(foodState);
+	const DragEnd = ({ draggableId, destination, source }: DropResult) => {
+		if (!destination) return;
+		setFood((prevFood) => {
+			const CopyFood = [...prevFood];
+			const copyLeftTime = CopyFood.slice(source.index, source.index + 1)[0].leftTime;
+			CopyFood.splice(source.index, 1);
+			CopyFood.splice(destination?.index, 0, { name: draggableId, leftTime: copyLeftTime });
+			return CopyFood;
+		});
 	};
 	return (
 		<DragDropContext onDragEnd={DragEnd}>
@@ -35,20 +45,17 @@ export function Refrigerator() {
 					{(provided) => (
 						<UlStyle ref={provided.innerRef} {...provided.droppableProps}>
 							<p style={{ marginBottom: '1rem' }}>냉장고 1번 칸</p>
-							<Draggable draggableId="first" index={0}>
-								{(provided2) => (
-									<Item ref={provided2.innerRef} {...provided2.draggableProps} {...provided2.dragHandleProps}>
-										달걀🍀 10알 2022년 8월 1일까지
-									</Item>
-								)}
-							</Draggable>
-							<Draggable draggableId="second" index={1}>
-								{(provided3) => (
-									<Item ref={provided3.innerRef} {...provided3.draggableProps} {...provided3.dragHandleProps}>
-										시금치🌈 200g 2022년 10월 2일까지
-									</Item>
-								)}
-							</Draggable>
+							{food.map((foods, index) => {
+								return (
+									<Draggable key={foods.name} draggableId={foods.name} index={index}>
+										{(provided1) => (
+											<Item ref={provided1.innerRef} {...provided1.draggableProps} {...provided1.dragHandleProps}>
+												{foods.name} {foods.leftTime}
+											</Item>
+										)}
+									</Draggable>
+								);
+							})}
 						</UlStyle>
 					)}
 				</Droppable>
