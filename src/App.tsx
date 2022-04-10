@@ -61,6 +61,7 @@ const Container = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	max-width: 100vw;
+	padding: 5%;
 `;
 
 const Header = styled.header`
