@@ -14,3 +14,6 @@ recoil, react-beautiful-dnd를 통한 droppable component를 연습해보기 위
 <li>react-beautiful-dnd</li>
 <li>styled-component</li>
 </ul>
+
+draggable table
+![화면-기록-2022-04-10-오후-7 54 37](https://user-images.githubusercontent.com/102515157/162614809-8dcfd21d-82e1-4b56-9e34-4cb8120f51f1.gif)
