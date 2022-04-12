@@ -2,7 +2,7 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { foodState } from './atoms';
-import RefrigerBoard from './Components/refrigerBoard';
+import RefrigerBoard from './Components/RefriBoard';
 
 const UlStyle = styled.ul`
 	display: flex;
