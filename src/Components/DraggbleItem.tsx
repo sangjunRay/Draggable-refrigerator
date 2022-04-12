@@ -14,6 +14,10 @@ const Item = styled.li`
 	:hover {
 		opacity: 0.7;
 	}
+	:active {
+		opacity: 0.8;
+		background-color: #c7e7d7;
+	}
 `;
 
 interface IDraggableItemProps {
