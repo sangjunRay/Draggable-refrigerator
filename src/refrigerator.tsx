@@ -3,25 +3,22 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { foodState } from './atoms';
 import { Font } from './common/Font';
-import DraggableFood from './Components/DraggbleItem';
 import RefrigerBoard from './Components/refrigerBoard';
 
 const UlStyle = styled.ul`
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-	width: 500px;
-	background-color: rgb(220, 220, 220);
-	padding: 1rem;
+	background-color: rgb(240, 240, 240);
 	border-radius: 5px;
 `;
 
 export function Refrigerator() {
 	const [food, setFood] = useRecoilState(foodState);
 	const DragEnd = ({ draggableId, destination, source }: DropResult) => {
-		if (!destination) return;
-		/* setFood((prevFood) => {
+		/* if (!destination) return;
+		setFood((prevFood) => {
 			const CopyFood = [...prevFood];
 			const copyLeftTime = CopyFood.slice(source.index, source.index + 1)[0].leftTime;
 			const copyAmount = CopyFood.slice(source.index, source.index + 1)[0].amount;
@@ -36,10 +33,9 @@ export function Refrigerator() {
 				<Droppable droppableId="one">
 					{(provided) => (
 						<UlStyle ref={provided.innerRef} {...provided.droppableProps}>
-							<Font fontSize="1.2rem" fontWeight="600" style={{ marginBottom: '1.5rem', marginRight: 'auto' }}>
-								❄️ 냉동실 1번 칸
-							</Font>
-							{Object.keys(food).map((boardId) => <RefrigerBoard key={boardId} boardId={boardId} foods={food[boardId]} />)}
+							{Object.keys(food).map((boardId) => (
+								<RefrigerBoard key={boardId} boardId={boardId} foods={food[boardId]} />
+							))}
 						</UlStyle>
 					)}
 				</Droppable>
