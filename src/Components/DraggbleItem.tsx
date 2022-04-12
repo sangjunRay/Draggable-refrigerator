@@ -1,3 +1,4 @@
+import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import { Font } from '../common/Font';
@@ -35,4 +36,4 @@ function DraggableFood({ foods, index }: IDraggableItemProps) {
 	);
 }
 
-export default DraggableFood;
+export default React.memo(DraggableFood);

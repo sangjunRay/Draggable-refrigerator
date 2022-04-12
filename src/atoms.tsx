@@ -1,19 +1,32 @@
 import { atom } from 'recoil';
 
-interface IFood {
-	name: string;
-	amount: string;
-	leftTime: string;
+export interface IRefriger {
+	refriger1: IFood[],
+	refriger2: IFood[],
+	refriger3: IFood[],
+	refriger4: IFood[],
 }
 
-interface IFoods extends Array<IFood> {}
+export interface IFood {
+	name: string, amount: string, leftTime: string
+}
 
-export const foodState = atom<IFoods>({
+export const foodState = atom<IRefriger>({
 	key: 'food',
-	default: [
-		{ name: '달걀🥚', amount: '5알', leftTime: '2022/04/21' },
-		{ name: '우유🥛', amount: '2팩', leftTime: '2022/05/19' },
-		{ name: '참치🍣', amount: '300g', leftTime: '2022/05/29' },
-		{ name: '시금치🌿', amount: '100g', leftTime: '2022/08/19' },
-	],
+	default: {
+		refriger1: [
+			{ name: '달걀🥚', amount: '3알', leftTime: '2022년 3월 1일' },
+			{ name: '우유🥛', amount: '2팩', leftTime: '2022년 3월 27일' },
+		],
+		refriger2: [
+			{ name: '참치🍣', amount: '100g', leftTime: '2022년 3월 16일' },
+			{ name: '시금치🌿', amount: '300g', leftTime: '2022년 3월 17일' },
+		],
+		refriger3: [{ name: '참치🍣', amount: '100g', leftTime: '2022년 3월 16일' }],
+		refriger4: [
+			{ name: '쌀🍚', amount: '500g', leftTime: '2022년 3월 16일' },
+			{ name: '동그랑땡🥟', amount: '300g', leftTime: '2022년 3월 17일' },
+			{ name: '시금치🌿', amount: '300g', leftTime: '2022년 3월 17일' },
+		],
+	},
 });
