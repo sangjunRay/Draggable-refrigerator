@@ -27,9 +27,9 @@ function DraggableFood({ foods, index }: IDraggableItemProps) {
 			{(provided1) => (
 				<Item ref={provided1.innerRef} {...provided1.draggableProps} {...provided1.dragHandleProps}>
 					<Font fontSize="1rem" fontWeight="600" marginBottom="0.5rem">
-						{foods.name} {foods.amount}
+						{foods.name} [{foods.amount}]
 					</Font>{' '}
-					{foods.leftTime} 까지 먹을 수 있음!
+					<Font fontSize="0.8rem">{foods.leftTime} 까지 먹을 수 있음!</Font>
 				</Item>
 			)}
 		</Draggable>
