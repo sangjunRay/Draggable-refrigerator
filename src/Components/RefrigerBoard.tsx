@@ -1,7 +1,7 @@
-import { IRefriger } from '../atoms';
+import { IFood } from '../atoms';
 
 interface IBoardProps {
-	foods: IRefriger[];
+	foods: IFood[];
 	boardId: string;
 }
 

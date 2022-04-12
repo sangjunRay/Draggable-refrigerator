@@ -1,10 +1,7 @@
 import { atom } from 'recoil';
 
 export interface IRefriger {
-	refriger1: IFood[],
-	refriger2: IFood[],
-	refriger3: IFood[],
-	refriger4: IFood[],
+	[key: string]: IFood[]
 }
 
 export interface IFood {
