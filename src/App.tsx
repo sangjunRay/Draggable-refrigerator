@@ -58,10 +58,9 @@ table {
 
 const Container = styled.div`
 	display: flex;
-	justify-content: flex-start;
 	align-items: center;
-	max-width: 100vw;
-	padding: 5%;
+	justify-content: center;
+	padding: 0 15% 0 15%;
 `;
 
 const Header = styled.header`

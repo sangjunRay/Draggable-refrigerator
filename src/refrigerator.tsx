@@ -6,16 +6,19 @@ import RefrigerBoard from './Components/refrigerBoard';
 
 const UlStyle = styled.ul`
 	display: flex;
+	box-sizing: border-box;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
 	background-color: rgb(240, 240, 240);
 	border-radius: 5px;
+	padding: 1rem;
 `;
 
 export function Refrigerator() {
 	const [food, setFood] = useRecoilState(foodState);
 	const DragEnd = ({ draggableId, source, destination }: DropResult) => {
+		if (!destination) return;
 		if (destination?.droppableId === source.droppableId) {
 			setFood((boards) => {
 				const boardCopy = [...boards[source.droppableId]];
@@ -26,6 +29,25 @@ export function Refrigerator() {
 				return {
 					...boards,
 					[source.droppableId]: boardCopy,
+				};
+			});
+		}
+		if (destination.droppableId !== source.droppableId) {
+			setFood((boards) => {
+				const sourceBoard = [...boards[source.droppableId]];
+				const destinationBoard = [...boards[destination.droppableId]];
+				const sourceLeftTime = sourceBoard.slice(source.index, source.index + 1)[0].leftTime;
+				const sourceAmount = sourceBoard.slice(source.index, source.index + 1)[0].amount;
+				sourceBoard.splice(source.index, 1);
+				destinationBoard.splice(destination.index, 0, {
+					name: draggableId,
+					amount: sourceAmount,
+					leftTime: sourceLeftTime,
+				});
+				return {
+					...boards,
+					[source.droppableId]: sourceBoard,
+					[destination.droppableId]: destinationBoard,
 				};
 			});
 		}

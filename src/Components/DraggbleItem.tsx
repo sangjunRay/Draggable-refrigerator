@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Font } from '../common/Font';
 
 const Item = styled.li`
-	width: 450px;
+	width: 350px;
 	padding: 1rem;
 	list-style: none;
 	background-color: white;
